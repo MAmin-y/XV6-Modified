@@ -106,3 +106,74 @@ sys_get_process_lifetime()
     return -1;
   return process_lifetime(pid);
 }
+
+int sys_set_bjs_process_parameters(void)
+{
+  int pid;
+  float priority_ratio;
+  float arrival_time_ratio;
+  float executed_cycle_ratio;
+  float process_size_ratio;
+
+
+  if (argint(0, &pid) < 0)
+    return -1;
+  if (argfloat(1, &priority_ratio) < 0)
+    return -1;
+  if (argfloat(2, &arrival_time_ratio) < 0)
+    return -1;
+  if (argfloat(3, &executed_cycle_ratio) < 0)
+    return -1;
+  if (argfloat(4, &process_size_ratio) < 0)
+    return -1;
+
+  return set_bjs_process_parameters(pid, priority_ratio, arrival_time_ratio, executed_cycle_ratio, process_size_ratio);
+}
+
+int
+sys_set_bjf_system_parameters(void)
+{
+  int pid;
+  float priority_ratio;
+  float arrival_time_ratio;
+  float  executed_cycle_ratio;
+  float process_size_ratio;
+
+  if(argint(0, &pid) < 0)
+    return -1;
+  if(argfloat(1, &priority_ratio) < 0)
+    return -1;
+  if(argfloat(2, &arrival_time_ratio) < 0)
+    return -1;
+  if(argfloat(3, &executed_cycle_ratio) < 0)
+    return -1;
+  if (argfloat(4, &process_size_ratio) < 0)
+    return -1;
+
+  set_bjf_system_parameters(priority_ratio, arrival_time_ratio, executed_cycle_ratio, process_size_ratio);
+  return 0;
+}
+
+int
+sys_print_process_info_table(void)
+{
+  print_process_info_table();
+  return 0;
+}
+
+int
+sys_transfer_process_queue(void)
+{
+  int queue_number, pid;
+  if(argint(0, &pid) < 0)
+    return -1;
+  if(argint(1, &queue_number) < 0)
+    return -1;
+  if(queue_number < RR)
+    return -1;  
+  if(queue_number > BJF)
+    return -1;
+
+  return transfer_process_queue(pid, queue_number);
+}
+

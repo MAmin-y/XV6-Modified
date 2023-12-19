@@ -23,6 +23,10 @@ int getpid(void);
 char* sbrk(int);
 int sleep(int);
 int uptime(void);
+int set_bjs_process_parameters(int, float, float, float, float);
+void set_bjf_system_parameters(float, float, float, float);
+void print_process_info_table(void);
+int transfer_process_queue(int, int);
 
 // ulib.c
 int stat(const char*, struct stat*);

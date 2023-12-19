@@ -46,13 +46,16 @@ trap(struct trapframe *tf)
     return;
   }
 
-  switch(tf->trapno){
+  switch(tf->trapno)
+  {
   case T_IRQ0 + IRQ_TIMER:
     if(cpuid() == 0){
       acquire(&tickslock);
       ticks++;
+      int save_ticks = ticks;
       wakeup(&ticks);
       release(&tickslock);
+      ageproc(save_ticks);
     }
     lapiceoi();
     break;

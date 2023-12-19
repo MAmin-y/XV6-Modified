@@ -34,3 +34,8 @@ SYSCALL(find_digital_root)
 SYSCALL(copy_file)
 SYSCALL(get_uncle_count)
 SYSCALL(get_process_lifetime)
+
+SYSCALL(set_bjs_process_parameters)
+SYSCALL(set_bjf_system_parameters)
+SYSCALL(print_process_info_table)
+SYSCALL(transfer_process_queue)

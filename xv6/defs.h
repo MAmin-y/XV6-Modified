@@ -112,6 +112,7 @@ struct cpu*     mycpu(void);
 struct proc*    myproc();
 void            pinit(void);
 void            procdump(void);
+void            ageproc(int);
 void            scheduler(void) __attribute__((noreturn));
 void            sched(void);
 void            setproc(struct proc*);
@@ -120,6 +121,10 @@ void            userinit(void);
 int             wait(void);
 void            wakeup(void*);
 void            yield(void);
+int             transfer_process_queue(int, int);
+int             set_bjs_process_parameters(int, float, float, float, float);
+void            set_bjf_system_parameters(float, float, float, float);
+void            print_process_info_table(void);
 // Extraaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 
 // swtch.S
@@ -151,9 +156,11 @@ char*           strncpy(char*, const char*, int);
 
 // syscall.c
 int             argint(int, int*);
+float           argfloat(int, float*);
 int             argptr(int, char**, int);
 int             argstr(int, char**);
 int             fetchint(uint, int*);
+int             fetchfloat(uint, float*);
 int             fetchstr(uint, char**);
 void            syscall(void);
 
@@ -165,6 +172,10 @@ void            idtinit(void);
 extern uint     ticks;
 void            tvinit(void);
 extern struct spinlock tickslock;
+
+// utils.c
+int             digitcount(int);
+void            print_spaces_to_console(int);
 
 // uart.c
 void            uartinit(void);

@@ -24,3 +24,11 @@
 #define SYS_copy_file  23
 #define SYS_get_uncle_count 24
 #define SYS_get_process_lifetime 25
+#define SYS_set_bjs_process_parameters 26
+#define SYS_set_bjf_system_parameters 27
+#define SYS_print_process_info_table 28
+#define SYS_transfer_process_queue 29
+
+
+
+

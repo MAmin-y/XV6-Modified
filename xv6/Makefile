@@ -184,10 +184,11 @@ UPROGS=\
 	_zombie\
 	_strdiff\
 	_find_digital_root\
-	_copy_file\
 	_get_uncle_count_test\
 	_get_process_lifetime_test\
 	_gdb_test\
+	_foo\
+	_mfq_info\
 
 fs.img: mkfs README $(UPROGS)
 	./mkfs fs.img README $(UPROGS)
