@@ -45,5 +45,3 @@ SYSCALL(acquire_prioritylock)
 SYSCALL(release_prioritylock)
 
 SYSCALL(print_cpu_syscalls_count)
-
-SYSCALL(set_zero_syscall_count)

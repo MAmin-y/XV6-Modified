@@ -33,7 +33,6 @@
 #define SYS_acquire_prioritylock 31
 #define SYS_release_prioritylock 32
 #define SYS_print_cpu_syscalls_count 33
-#define SYS_set_zero_syscall_count 34
 
 
 

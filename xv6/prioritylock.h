@@ -2,7 +2,6 @@
 
 struct node{
     int priority;
-    struct proc *process;
     struct node *next;
 };
 

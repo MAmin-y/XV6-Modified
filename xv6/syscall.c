@@ -135,7 +135,6 @@ extern int sys_init_prioritylock(void);
 extern int sys_acquire_prioritylock(void);
 extern int sys_release_prioritylock(void);
 extern int sys_print_cpu_syscalls_count(void);
-extern int sys_set_zero_syscall_count(void);
 
 static int (*syscalls[])(void) = {
 [SYS_fork]    sys_fork,
@@ -171,7 +170,6 @@ static int (*syscalls[])(void) = {
 [SYS_acquire_prioritylock] sys_acquire_prioritylock,
 [SYS_release_prioritylock] sys_release_prioritylock,
 [SYS_print_cpu_syscalls_count] sys_print_cpu_syscalls_count,
-[SYS_set_zero_syscall_count]  sys_set_zero_syscall_count
 };
 
 void
@@ -185,6 +183,7 @@ syscall(void)
   popcli();
   total_syscall_counter++;
   __sync_synchronize();
+  
 
   num = curproc->tf->eax;
   if(num > 0 && num < NELEM(syscalls) && syscalls[num]) {

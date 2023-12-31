@@ -57,19 +57,9 @@ int sys_print_cpu_syscalls_count(void)
     for(int i = 0; i < ncpu; i++)
     {
         cprintf("---CPU %d: %d\n", cpus[i].apicid, cpus[i].syscall_counter);
-    }
-    cprintf("---Total: %d\n", total_syscall_counter);
-    return 0;
-}
-
-int sys_set_zero_syscall_count(void)
-{
-    pushcli();
-    for(int i = 0; i < ncpu; i++)
-    {
         cpus[i].syscall_counter = 0;
     }
-    popcli();
+    cprintf("---Total: %d\n", total_syscall_counter);
     total_syscall_counter = 0;
-    __sync_synchronize();
+    return 0;
 }

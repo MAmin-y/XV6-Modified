@@ -51,4 +51,3 @@ void init_prioritylock(void);
 void acquire_prioritylock(void);
 void release_prioritylock(void);
 void print_cpu_syscalls_count(void);
-void set_zero_syscall_count(void);

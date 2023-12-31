@@ -7,9 +7,9 @@ void process_function(int i)
 {
   acquire_prioritylock();
   printf(1, "Process %d acquired the lock.\n", getpid());
-  sleep(200);
-  printf(1, "Process %d released the lock.\n", getpid());
+  sleep(500);
   release_prioritylock();
+  printf(1, "Process %d released the lock.\n", getpid());
   exit();
 }
 
