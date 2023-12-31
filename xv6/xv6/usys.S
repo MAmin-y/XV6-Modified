@@ -39,3 +39,11 @@ SYSCALL(set_bjs_process_parameters)
 SYSCALL(set_bjf_system_parameters)
 SYSCALL(print_process_info_table)
 SYSCALL(transfer_process_queue)
+
+SYSCALL(init_prioritylock)
+SYSCALL(acquire_prioritylock)
+SYSCALL(release_prioritylock)
+
+SYSCALL(print_cpu_syscalls_count)
+
+SYSCALL(set_zero_syscall_count)
