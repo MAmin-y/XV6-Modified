@@ -131,6 +131,10 @@ extern int sys_set_bjs_process_parameters(void);
 extern int sys_set_bjf_system_parameters(void);
 extern int sys_print_process_info_table(void);
 extern int sys_transfer_process_queue(void);
+extern int sys_init_prioritylock(void);
+extern int sys_acquire_prioritylock(void);
+extern int sys_release_prioritylock(void);
+extern int sys_print_cpu_syscalls_count(void);
 
 static int (*syscalls[])(void) = {
 [SYS_fork]    sys_fork,
@@ -154,7 +158,7 @@ static int (*syscalls[])(void) = {
 [SYS_link]    sys_link,
 [SYS_mkdir]   sys_mkdir,
 [SYS_close]   sys_close,
-[SYS_find_digital_root] sys_find_digital_root,
+[SYS_find_digital_root]   sys_find_digital_root,
 [SYS_copy_file] sys_copy_file,
 [SYS_get_uncle_count] sys_get_uncle_count,
 [SYS_get_process_lifetime] sys_get_process_lifetime,
@@ -162,6 +166,10 @@ static int (*syscalls[])(void) = {
 [SYS_set_bjf_system_parameters] sys_set_bjf_system_parameters,
 [SYS_print_process_info_table] sys_print_process_info_table,
 [SYS_transfer_process_queue] sys_transfer_process_queue,
+[SYS_init_prioritylock] sys_init_prioritylock,
+[SYS_acquire_prioritylock] sys_acquire_prioritylock,
+[SYS_release_prioritylock] sys_release_prioritylock,
+[SYS_print_cpu_syscalls_count] sys_print_cpu_syscalls_count,
 };
 
 void
@@ -169,6 +177,13 @@ syscall(void)
 {
   int num;
   struct proc *curproc = myproc();
+
+  pushcli();
+  mycpu()->syscall_counter++;
+  popcli();
+  total_syscall_counter++;
+  __sync_synchronize();
+  
 
   num = curproc->tf->eax;
   if(num > 0 && num < NELEM(syscalls) && syscalls[num]) {

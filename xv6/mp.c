@@ -11,6 +11,8 @@
 #include "mmu.h"
 #include "proc.h"
 
+uint total_syscall_counter;
+
 struct cpu cpus[NCPU];
 int ncpu;
 uchar ioapicid;

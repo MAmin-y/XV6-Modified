@@ -47,3 +47,7 @@ int find_digital_root(void);
 int copy_file(const char *src, const char *dest);
 int get_uncle_count(int);
 int get_process_lifetime(int);
+void init_prioritylock(void);
+void acquire_prioritylock(void);
+void release_prioritylock(void);
+void print_cpu_syscalls_count(void);

@@ -29,6 +29,11 @@
 #define SYS_print_process_info_table 28
 #define SYS_transfer_process_queue 29
 
+#define SYS_init_prioritylock 30
+#define SYS_acquire_prioritylock 31
+#define SYS_release_prioritylock 32
+#define SYS_print_cpu_syscalls_count 33
+
 
 
 
